@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- <link rel="icon" type="image/svg+xml" href="images/constellation.svg"> -->
+  <link rel="icon" type="image/svg+xml" href="images/constellation.svg">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Masha Bondarenko</title>
@@ -122,7 +122,25 @@
       margin-bottom: 1.25rem;
     }
 
-    h2 { display: none; }
+    h2 {
+      display: block;
+      margin: 0;
+      color: var(--text);
+      font-size: 0.78rem;
+      font-weight: 760;
+      letter-spacing: 0.08em;
+      text-transform: lowercase;
+    }
+
+    #research h2 {
+      color: #7fbfd7;
+    }
+
+    #research .section-header {
+      gap: 0.75rem;
+      align-items: baseline;
+      margin-bottom: 1.35rem;
+    }
 
     .filter-buttons {
       display: flex;
@@ -252,116 +270,54 @@
 
 
 
-    .shatter-toggle {
+
+    .page-nav {
       position: fixed;
-      right: 1rem;
-      bottom: 1rem;
-      z-index: 10020;
-      border: 1.5px solid var(--text);
-      background: var(--bg);
-      color: var(--text);
-      font: inherit;
-      font-size: 0.86rem;
+      left: max(1rem, calc((100vw - var(--maxw)) / 2 - 8.8rem));
+      top: 3.15rem;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+      width: 6.7rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.02em;
+    }
+
+    .page-nav a {
+      display: block;
+      width: fit-content;
+      color: var(--faint);
       font-weight: 700;
-      letter-spacing: 0.01em;
-      padding: 0.48rem 0.68rem;
-      cursor: pointer;
-      box-shadow: 4px 4px 0 var(--text);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      padding: 0.06rem 0 0.06rem 0.55rem;
     }
 
-    .shatter-toggle:hover,
-    .shatter-toggle.is-armed {
-      background: var(--blue-soft);
+    .page-nav a:hover {
+      color: var(--text);
+      background: transparent;
+      box-shadow: none;
+      border-left-color: var(--blue);
     }
 
-    body.hammer-armed,
-    body.hammer-armed * {
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-35 24 24)'%3E%3Crect x='8' y='8' width='23' height='12' fill='%23222222'/%3E%3Crect x='28' y='10' width='8' height='8' fill='%23222222'/%3E%3Crect x='20' y='19' width='6' height='25' fill='%23222222'/%3E%3Crect x='22' y='21' width='3' height='21' fill='%23ffffff' opacity='0.35'/%3E%3C/g%3E%3C/svg%3E") 13 33, crosshair;
+    @media (max-width: 760px) {
+      .page-nav {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: auto;
+        margin: 2.75rem 0 3rem;
+        padding: 0 1rem;
+      }
+
+      .page-nav a {
+        border-left: 0;
+        border-bottom: 2px solid var(--blue-line);
+        padding: 0;
+      }
     }
 
-    body.is-shattered {
-      overflow: hidden;
-      touch-action: none;
-    }
-
-    body.is-shattered > main.container {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .shatter-stage {
-      position: fixed;
-      inset: 0;
-      z-index: 9998;
-      overflow: hidden;
-      background: var(--bg);
-      pointer-events: none;
-    }
-
-    .paper-shard {
-      position: absolute;
-      inset: 0;
-      background: var(--bg);
-      overflow: hidden;
-      filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.22)) drop-shadow(0 3px 7px rgba(0, 0, 0, 0.055));
-      transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
-      transform-origin: var(--hit-x) var(--hit-y);
-      will-change: transform;
-    }
-
-    .paper-shard::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      clip-path: inherit;
-      pointer-events: none;
-      box-shadow: inset 0 0 0 0.85px rgba(0, 0, 0, 0.18);
-    }
-
-    .paper-shard .container {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 2.8rem 1.35rem 4rem;
-    }
-
-    .impact-mark {
-      position: fixed;
-      left: var(--impact-left);
-      top: var(--impact-top);
-      width: 74px;
-      height: 74px;
-      transform: translate(-50%, -50%);
-      z-index: 9999;
-      pointer-events: none;
-      opacity: 0.92;
-    }
-
-    .impact-mark::before,
-    .impact-mark::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      border: 1px solid rgba(0, 0, 0, 0.24);
-      border-radius: 43% 57% 48% 52%;
-      transform: translate(-50%, -50%) rotate(9deg);
-    }
-
-    .impact-mark::before { width: 28px; height: 22px; background: rgba(255,255,255,0.38); }
-    .impact-mark::after { width: 43px; height: 31px; border-color: rgba(0, 0, 0, 0.14); }
-
-    .crack-line {
-      position: fixed;
-      left: var(--impact-left);
-      top: var(--impact-top);
-      height: 1px;
-      width: var(--length);
-      z-index: 9999;
-      background: linear-gradient(90deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16), rgba(0,0,0,0));
-      transform-origin: left center;
-      transform: rotate(var(--angle));
-      pointer-events: none;
-    }
 
     @media (max-width: 640px) {
       .container { padding: 2rem 1rem 3rem; }
@@ -370,17 +326,20 @@
       .filter-buttons { margin-top: 0.35rem; }
     }
 
-    body.bandaid-mode,
-    body.bandaid-mode * {
-      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-28 24 24)'%3E%3Crect x='7' y='16' width='34' height='16' rx='5' fill='%23f4c7aa' stroke='%23222' stroke-width='2'/%3E%3Crect x='18' y='16' width='12' height='16' fill='%23e9a985' stroke='%23222' stroke-width='1.4'/%3E%3Ccircle cx='14' cy='22' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='14' cy='27' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='34' cy='22' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='34' cy='27' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='22' cy='22' r='1' fill='%23b97f65'/%3E%3Ccircle cx='26' cy='26' r='1' fill='%23b97f65'/%3E%3C/g%3E%3C/svg%3E") 18 18, pointer;
-    }
-
   </style>
 </head>
 <body>
 
-  <button class="shatter-toggle" type="button" aria-pressed="false">hammer</button>
-  <main class="container">
+
+  <nav class="page-nav" aria-label="Site navigation">
+        <a href="#top">Bio</a>
+        <a href="#research">Research</a>
+        <!-- <a href="projects.html">Projects</a> -->
+        <!-- <a href="cv.html">CV</a> -->
+        <!-- <a href="notes.html">Notes</a> -->
+      </nav>
+
+  <main class="container" id="top">
     <header>
       <h1>Masha Bondarenko</h1>
 
@@ -453,7 +412,7 @@
       </div>
     </header>
 
-    <section>
+    <section id="research">
       <div class="section-header">
         <h2>Research</h2>
         <div class="filter-buttons" aria-label="Research filters">
@@ -545,17 +504,11 @@
       </div>
     </section>
 
-    <!-- <footer>Masha Bondarenko</footer> -->
   </main>
 
   <script>
     const buttons = document.querySelectorAll(".filter-btn");
     const entries = document.querySelectorAll(".entry");
-    const shatterButton = document.querySelector(".shatter-toggle");
-    const mainContent = document.querySelector("main.container");
-    let shatterStage = null;
-    let savedScrollY = 0;
-    let hammerArmed = false;
 
     function updateCounts() {
       const allCount = entries.length;
@@ -584,185 +537,10 @@
       });
     });
 
-    function pointOnRectangle(cx, cy, angle, width, height) {
-      const dx = Math.cos(angle);
-      const dy = Math.sin(angle);
-      const tx = dx > 0 ? (width - cx) / dx : dx < 0 ? -cx / dx : Infinity;
-      const ty = dy > 0 ? (height - cy) / dy : dy < 0 ? -cy / dy : Infinity;
-      const t = Math.min(tx, ty);
-      return { x: cx + dx * t, y: cy + dy * t };
-    }
-
-    function makeClip(points) {
-      return `polygon(${points.map(p => `${p.x.toFixed(1)}px ${p.y.toFixed(1)}px`).join(", ")})`;
-    }
-
-    function createShardPieces(cx, cy) {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const sectors = 28;
-      const rings = [0.05, 0.23, 0.50, 1.08];
-      const startAngle = -Math.PI + 0.13;
-      const pieces = [];
-
-      for (let i = 0; i < sectors; i++) {
-        const jitter0 = Math.sin(i * 1.73) * 0.035;
-        const jitter1 = Math.cos(i * 2.11) * 0.035;
-        const a0 = startAngle + (i / sectors) * Math.PI * 2 + jitter0;
-        const a1 = startAngle + ((i + 1) / sectors) * Math.PI * 2 + jitter1;
-        const mid = (a0 + a1) / 2;
-
-        const edge0 = pointOnRectangle(cx, cy, a0, width, height);
-        const edge1 = pointOnRectangle(cx, cy, a1, width, height);
-
-        for (let r = 0; r < rings.length - 1; r++) {
-          const inner = rings[r];
-          const outer = rings[r + 1];
-          const p0 = { x: cx + (edge0.x - cx) * inner, y: cy + (edge0.y - cy) * inner };
-          const p1 = { x: cx + (edge1.x - cx) * inner, y: cy + (edge1.y - cy) * inner };
-          const p2 = { x: cx + (edge1.x - cx) * outer, y: cy + (edge1.y - cy) * outer };
-          const p3 = { x: cx + (edge0.x - cx) * outer, y: cy + (edge0.y - cy) * outer };
-
-          const distance = 3 + r * 3.2 + (i % 3) * 0.8;
-          const dx = Math.cos(mid) * distance;
-          const dy = Math.sin(mid) * distance;
-          const rot = ((i % 2 ? 1 : -1) * (0.18 + r * 0.10 + (i % 4) * 0.035));
-
-          pieces.push({
-            clip: makeClip([p0, p1, p2, p3]),
-            dx: `${dx.toFixed(1)}px`,
-            dy: `${dy.toFixed(1)}px`,
-            rot: `${rot.toFixed(2)}deg`
-          });
-        }
-      }
-      return pieces;
-    }
-
-    function addImpactLines(stage, cx, cy) {
-      stage.style.setProperty("--impact-left", `${cx}px`);
-      stage.style.setProperty("--impact-top", `${cy}px`);
-
-      const impact = document.createElement("div");
-      impact.className = "impact-mark";
-      stage.appendChild(impact);
-
-      const lengths = [210, 170, 260, 130, 230, 155, 300, 120, 190, 145, 250, 110];
-      const angles = [-128, -96, -64, -31, -8, 22, 49, 82, 116, 151, 194, 235];
-      angles.forEach((angle, index) => {
-        const line = document.createElement("div");
-        line.className = "crack-line";
-        line.style.setProperty("--angle", `${angle}deg`);
-        line.style.setProperty("--length", `${lengths[index]}px`);
-        stage.appendChild(line);
-      });
-    }
-
-    function createShardStage(hitX, hitY) {
-      savedScrollY = window.scrollY;
-      const pieces = createShardPieces(hitX, hitY);
-      shatterStage = document.createElement("div");
-      shatterStage.className = "shatter-stage";
-      shatterStage.setAttribute("aria-hidden", "true");
-      shatterStage.style.setProperty("--hit-x", `${hitX}px`);
-      shatterStage.style.setProperty("--hit-y", `${hitY}px`);
-
-      pieces.forEach(piece => {
-        const shard = document.createElement("div");
-        shard.className = "paper-shard";
-        shard.style.clipPath = piece.clip;
-        shard.style.setProperty("--dx", piece.dx);
-        shard.style.setProperty("--dy", piece.dy);
-        shard.style.setProperty("--rot", piece.rot);
-
-        const clone = mainContent.cloneNode(true);
-        clone.removeAttribute("id");
-        clone.style.transform = `translateY(${-savedScrollY}px)`;
-        clone.style.transformOrigin = "top center";
-        shard.appendChild(clone);
-        shatterStage.appendChild(shard);
-      });
-
-      addImpactLines(shatterStage, hitX, hitY);
-      document.body.appendChild(shatterStage);
-      document.body.classList.remove("hammer-armed");
-      document.body.classList.add("is-shattered", "bandaid-mode");
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${savedScrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
-      hammerArmed = false;
-      shatterButton.classList.remove("is-armed");
-      shatterButton.textContent = "fix";
-      shatterButton.setAttribute("aria-pressed", "true");
-    }
-
-    function restorePage() {
-      if (shatterStage) shatterStage.remove();
-      shatterStage = null;
-      document.body.classList.remove("is-shattered", "hammer-armed", "bandaid-mode");
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
-      window.scrollTo(0, savedScrollY);
-      hammerArmed = false;
-      shatterButton.classList.remove("is-armed");
-      shatterButton.textContent = "hammer";
-      shatterButton.setAttribute("aria-pressed", "false");
-    }
-
-    function armHammer() {
-      hammerArmed = true;
-      document.body.classList.add("hammer-armed");
-      shatterButton.classList.add("is-armed");
-      shatterButton.textContent = "tap page";
-    }
-
-    shatterButton.addEventListener("click", event => {
-      event.stopPropagation();
-      if (document.body.classList.contains("is-shattered")) {
-        restorePage();
-      } else if (hammerArmed) {
-        hammerArmed = false;
-        document.body.classList.remove("hammer-armed");
-        shatterButton.classList.remove("is-armed");
-        shatterButton.textContent = "hammer";
-      } else {
-        armHammer();
-      }
-    });
-
-    document.addEventListener("click", event => {
-      if (document.body.classList.contains("is-shattered")) {
-        if (event.target.closest(".shatter-toggle")) return;
-        event.preventDefault();
-        restorePage();
-        return;
-      }
-
-      if (!hammerArmed) return;
-      if (event.target.closest(".shatter-toggle")) return;
-      event.preventDefault();
-      createShardStage(event.clientX, event.clientY);
-    }, true);
-
-    document.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        if (document.body.classList.contains("is-shattered")) restorePage();
-        else if (hammerArmed) {
-          hammerArmed = false;
-          document.body.classList.remove("hammer-armed");
-          shatterButton.classList.remove("is-armed");
-          shatterButton.textContent = "hammer";
-        }
-      }
-    });
-
     updateCounts();
     applyFilter("manuscript");
+
+    
   </script>
 </body>
 </html>
