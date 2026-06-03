@@ -1,638 +1,715 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="icon" type="image/svg+xml" href="images/constellation.svg">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- <link rel="icon" type="image/svg+xml" href="images/constellation.svg"> -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Masha Bondarenko</title>
 
   <style>
     :root {
-      --accent: #9582cf;
-      --text: #1a1a1a;
-      --muted: #6a6a6a;
       --bg: #ffffff;
-      --tag: #89749b;
-      --section: #806793;
-      --maxw: 760px;
+      --text: #222222;
+      --muted: #60646c;
+      --faint: #8a9099;
+      --blue: #9edbf0;
+      --blue-soft: #dff4fb;
+      --blue-line: #c7eef8;
+      --submission-line: #b9b7c9;
+      --pink: #f3bfd1;
+      --lavender: #d8cdf4;
+      --sage: #c9dfd1;
+      --gold: #efd99d;
+      --grey-dot: #9aa0a8;
+      --maxw: 820px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      line-height: 1.65;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.45;
       -webkit-font-smoothing: antialiased;
-      position: relative;
-      overflow-x: hidden;
-      min-height: 100vh;
     }
 
     .container {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 5rem 1.25rem 10rem;
-      position: relative;
-      z-index: 1;
+      padding: 2.8rem 1.35rem 4rem;
     }
 
     a {
-      color: var(--accent);
-      text-decoration: none;
+      color: inherit;
+      font-weight: 650;
+      text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.06em;
+      text-decoration-color: var(--blue);
+      transition: background-color 120ms ease, box-shadow 120ms ease, text-decoration-color 120ms ease;
     }
 
     a:hover {
-      text-decoration: underline;
+      background-color: var(--blue-soft);
+      box-shadow: 0.12em 0 0 var(--blue-soft), -0.12em 0 0 var(--blue-soft);
+      text-decoration-style: solid;
+      text-decoration-thickness: 3px;
+      text-decoration-color: var(--blue);
     }
 
-    header {
-      margin-bottom: 3rem;
-    }
+    .bio a:nth-of-type(2n) { text-decoration-color: var(--lavender); }
+    .bio a:nth-of-type(2n):hover { background-color: #f0ebfb; box-shadow: 0.12em 0 0 #f0ebfb, -0.12em 0 0 #f0ebfb; }
+    .bio a:nth-of-type(3n) { text-decoration-color: var(--pink); }
+    .bio a:nth-of-type(3n):hover { background-color: #fae9ef; box-shadow: 0.12em 0 0 #fae9ef, -0.12em 0 0 #fae9ef; }
+    .bio a:nth-of-type(4n) { text-decoration-color: var(--sage); }
+    .bio a:nth-of-type(4n):hover { background-color: #ecf5ef; box-shadow: 0.12em 0 0 #ecf5ef, -0.12em 0 0 #ecf5ef; }
+
+    header { margin-bottom: 2.4rem; }
 
     h1 {
-      margin-top: 30px;
-      font-size: clamp(1.9rem, 3vw, 2.4rem);
-      font-weight: 500;
-      letter-spacing: 3px;
+      margin: 0;
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 760;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
     }
 
-    .subtitle {
-      color: var(--muted);
-      font-size: 0.96rem;
-      font-style: italic;
-      margin-bottom: 0.75rem;
-    }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1fr 110px;
-      gap: 1.25rem;
-      align-items: start;
-    }
+    .hero { margin-top: 1.05rem; }
 
     .bio {
-      color: var(--muted);
-      font-size: 0.98rem;
+      color: var(--text);
+      font-size: 1rem;
       margin: 0;
-    }
-
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      display: block;
-      object-fit: contain;
+      max-width: 76ch;
     }
 
     .icon-links {
       display: flex;
-      gap: 0.65rem;
-      margin-top: 0.9rem;
+      flex-wrap: wrap;
+      gap: 1.05rem;
+      margin-top: 1.05rem;
+      align-items: center;
     }
 
     .icon-link {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--muted);
-      text-decoration: none;
-      border: 1px solid transparent;
-      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
-    }
-
-    .icon-link i {
-      font-size: 1rem;
-      line-height: 1;
-    }
-
-    .icon-link:hover {
       color: var(--text);
-      border-color: #ddd7e8;
-      background: #f7f5fb;
-      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 650;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.06em;
     }
 
-    section {
-      margin-bottom: 2.5rem;
-    }
+    .icon-link:nth-child(2) { text-decoration-color: var(--lavender); }
+    .icon-link:nth-child(2):hover { background-color: #f0ebfb; box-shadow: 0.12em 0 0 #f0ebfb, -0.12em 0 0 #f0ebfb; }
+    .icon-link:nth-child(3) { text-decoration-color: var(--pink); }
+    .icon-link:nth-child(3):hover { background-color: #fae9ef; box-shadow: 0.12em 0 0 #fae9ef, -0.12em 0 0 #fae9ef; }
+    .icon-link:nth-child(4) { text-decoration-color: var(--sage); }
+    .icon-link:nth-child(4):hover { background-color: #ecf5ef; box-shadow: 0.12em 0 0 #ecf5ef, -0.12em 0 0 #ecf5ef; }
+
+    section { margin-bottom: 2.2rem; }
 
     .section-header {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
+      justify-content: flex-start;
+      align-items: baseline;
+      margin-bottom: 1.25rem;
     }
 
-    h2 {
-      margin: 0;
-      font-size: 1.2rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--section);
-      font-weight: 600;
-    }
+    h2 { display: none; }
 
     .filter-buttons {
       display: flex;
-      gap: 0.45rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
     }
 
     .filter-btn {
-      border: 1px solid #e3ddee;
-      background: #fff;
-      color: var(--muted);
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.6rem;
-      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: var(--faint);
+      font: inherit;
+      font-size: 0.92rem;
+      font-weight: 650;
+      padding: 0 0 0.12rem;
       cursor: pointer;
-      transition: all 0.2s ease;
+      text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 0.08em;
+      text-decoration-color: transparent;
     }
 
-    .filter-btn:hover {
-      border-color: #cdbfe2;
-      color: var(--section);
-      background: #faf8fd;
-    }
-
+    .filter-btn:hover,
     .filter-btn.active {
-      background: #f4effb;
-      border-color: #cdbfe2;
-      color: var(--section);
-      font-weight: 600;
+      color: var(--text);
+      text-decoration-color: var(--blue);
     }
 
     .entry-list {
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.1rem;
     }
 
-    .entry {
-      display: block;
-    }
-
-    .entry.hidden {
-      display: none;
-    }
-
-    .entry-title-row {
-      display: flex;
-      align-items: center;
-      gap: 0.55rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.15rem;
-    }
+    .entry { padding: 0; }
+    .entry.hidden { display: none; }
 
     .entry-title {
       font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.05rem;
+      font-weight: 690;
+      line-height: 1.28;
+      margin: 0;
       color: var(--text);
     }
 
-    .entry-type {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--tag);
+    .entry-title-text,
+    .title-link {
+      background: linear-gradient(transparent 84%, var(--blue-line) 84%, var(--blue-line) 92%, transparent 92%);
     }
 
-    .entry-meta {
-      font-size: 0.8rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-      margin-bottom: 0.25rem;
+    .entry.in-submission .entry-title-text {
+      background: none;
+      text-decoration-line: underline;
+      text-decoration-style: dotted;
+      text-decoration-thickness: 2.5px;
+      text-underline-offset: 0.12em;
+      text-decoration-color: var(--submission-line);
     }
+
+    .title-link {
+      color: inherit;
+      font-weight: inherit;
+      text-decoration: none;
+    }
+
+    .title-link:hover {
+      background: var(--blue-soft);
+      box-shadow: 0.12em 0 0 var(--blue-soft), -0.12em 0 0 var(--blue-soft);
+      text-decoration-line: underline;
+      text-decoration-style: solid;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.1em;
+      text-decoration-color: var(--blue);
+    }
+
+    .status { display: none; }
 
     .entry-author {
-      font-size: 0.95rem;
-      color: var(--muted);
-      letter-spacing: 0.03em;
-      margin-bottom: 0.2rem;
-      line-height: 1.3;
+      font-size: 0.94rem;
+      color: #3f4248;
+      margin: 0.18rem 0 0;
+      line-height: 1.25;
     }
 
     .author-me {
-      color: var(--tag);
-      font-weight: 600;
+      color: var(--text);
+      font-weight: 700;
+      background: none;
     }
 
-    .entry-status {
-      font-size: 0.72rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-style: italic;
+    .entry-venue {
+      font-size: 0.9rem;
+      color: #8b9098;
+      margin: 0.18rem 0 0;
+      line-height: 1.25;
     }
 
-    .status-submission {
-      color: #74b2e2;
-    }
+    .venue-links { color: var(--faint); }
 
-    .status-accepted {
-      color: #6bc36e;
-    }
-
-    .entry-date {
-      font-size: 0.72rem;
-      letter-spacing: 0.08em;
-      color: #b5b5b5;
-    }
-
-    .entry-row-links {
-      display: flex;
-      gap: 0.35rem;
-      /* margin-left: auto;
-      align-items: center; */
-    }
-
-    .entry-link {
-      font-size: 1rem;
-      color: #b5b5b5;
-      transition: color 0.2s ease;
-      text-decoration: none;
-    }
-
-    .entry-link:hover {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    .entry-desc {
+    .venue-link {
       color: var(--muted);
-      font-size: 0.94rem;
+      font-weight: 600;
+      text-decoration-color: var(--grey-dot);
+      text-decoration-thickness: 3px;
+      text-underline-offset: 0.04em;
+    }
+
+    .venue-link:hover {
+      color: var(--text);
+      background-color: #eef0f3;
+      box-shadow: 0.12em 0 0 #eef0f3, -0.12em 0 0 #eef0f3;
+      text-decoration-style: solid;
+      text-decoration-thickness: 3px;
+      text-decoration-color: var(--grey-dot);
     }
 
     footer {
-      margin-top: 3rem;
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--muted);
+      margin-top: 2.5rem;
+      font-size: 0.86rem;
+      color: var(--faint);
     }
 
     .top-art,
-    .bottom-art {
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 220px;
+    .bottom-art,
+    .avatar { display: none; }
+
+
+
+    .shatter-toggle {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 10020;
+      border: 1.5px solid var(--text);
+      background: var(--bg);
+      color: var(--text);
+      font: inherit;
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      padding: 0.48rem 0.68rem;
+      cursor: pointer;
+      box-shadow: 4px 4px 0 var(--text);
+    }
+
+    .shatter-toggle:hover,
+    .shatter-toggle.is-armed {
+      background: var(--blue-soft);
+    }
+
+    body.hammer-armed,
+    body.hammer-armed * {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-35 24 24)'%3E%3Crect x='8' y='8' width='23' height='12' fill='%23222222'/%3E%3Crect x='28' y='10' width='8' height='8' fill='%23222222'/%3E%3Crect x='20' y='19' width='6' height='25' fill='%23222222'/%3E%3Crect x='22' y='21' width='3' height='21' fill='%23ffffff' opacity='0.35'/%3E%3C/g%3E%3C/svg%3E") 13 33, crosshair;
+    }
+
+    body.is-shattered {
+      overflow: hidden;
+      touch-action: none;
+    }
+
+    body.is-shattered > main.container {
+      opacity: 0;
       pointer-events: none;
-      z-index: 0;
-      opacity: 0.3;
     }
 
-    .top-art {
-      top: -50px;
+    .shatter-stage {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      overflow: hidden;
+      background: var(--bg);
+      pointer-events: none;
     }
 
-    .bottom-art {
-      bottom: 0;
+    .paper-shard {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      overflow: hidden;
+      filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.22)) drop-shadow(0 3px 7px rgba(0, 0, 0, 0.055));
+      transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
+      transform-origin: var(--hit-x) var(--hit-y);
+      will-change: transform;
     }
 
-    .top-art img,
-    .bottom-art img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
+    .paper-shard::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      clip-path: inherit;
+      pointer-events: none;
+      box-shadow: inset 0 0 0 0.85px rgba(0, 0, 0, 0.18);
     }
 
-    .top-art img {
-      transform: scaleY(-1);
+    .paper-shard .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 2.8rem 1.35rem 4rem;
+    }
+
+    .impact-mark {
+      position: fixed;
+      left: var(--impact-left);
+      top: var(--impact-top);
+      width: 74px;
+      height: 74px;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0.92;
+    }
+
+    .impact-mark::before,
+    .impact-mark::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.24);
+      border-radius: 43% 57% 48% 52%;
+      transform: translate(-50%, -50%) rotate(9deg);
+    }
+
+    .impact-mark::before { width: 28px; height: 22px; background: rgba(255,255,255,0.38); }
+    .impact-mark::after { width: 43px; height: 31px; border-color: rgba(0, 0, 0, 0.14); }
+
+    .crack-line {
+      position: fixed;
+      left: var(--impact-left);
+      top: var(--impact-top);
+      height: 1px;
+      width: var(--length);
+      z-index: 9999;
+      background: linear-gradient(90deg, rgba(0,0,0,0.40), rgba(0,0,0,0.16), rgba(0,0,0,0));
+      transform-origin: left center;
+      transform: rotate(var(--angle));
+      pointer-events: none;
     }
 
     @media (max-width: 640px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-
-      .avatar {
-        width: 88px;
-        height: 88px;
-      }
-
-      .entry-row-links {
-        margin-left: 0;
-      }
+      .container { padding: 2rem 1rem 3rem; }
+      .icon-links { gap: 0.85rem; }
+      .section-header { display: block; }
+      .filter-buttons { margin-top: 0.35rem; }
     }
+
+    body.bandaid-mode,
+    body.bandaid-mode * {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cg transform='rotate(-28 24 24)'%3E%3Crect x='7' y='16' width='34' height='16' rx='5' fill='%23f4c7aa' stroke='%23222' stroke-width='2'/%3E%3Crect x='18' y='16' width='12' height='16' fill='%23e9a985' stroke='%23222' stroke-width='1.4'/%3E%3Ccircle cx='14' cy='22' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='14' cy='27' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='34' cy='22' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='34' cy='27' r='1.2' fill='%23b97f65'/%3E%3Ccircle cx='22' cy='22' r='1' fill='%23b97f65'/%3E%3Ccircle cx='26' cy='26' r='1' fill='%23b97f65'/%3E%3C/g%3E%3C/svg%3E") 18 18, pointer;
+    }
+
   </style>
 </head>
 <body>
-  <div class="top-art" aria-hidden="true">
-    <img src="images/network.svg" alt="" />
-  </div>
 
+  <button class="shatter-toggle" type="button" aria-pressed="false">hammer</button>
   <main class="container">
     <header>
       <h1>Masha Bondarenko</h1>
 
       <div class="hero">
-        <div>
-          <p class="bio">
-            I graduated from <a href="https://www.berkeley.edu/">UC Berkeley</a> with a degree in
-            <a href="https://engineering.berkeley.edu/academics/undergraduate-programs/electrical-engineering-computer-sciences/">Electrical Engineering &amp; Computer Science</a> in 2024. I currently work in the
-            <a href="https://sohnlab.ucsf.edu/">Sohn Lab</a> at <a href="https://www.ucsf.edu/">UCSF</a>, where I develop
-            machine learning methods to address clinical challenges in radiology,
-            with a focus on imaging-based risk stratification and multimodal data integration.
-            I have a technical interest in vision foundation models and diffusion/GANs.
-          </p>
+        <p class="bio">
+          I graduated from <a href="https://www.berkeley.edu/">UC Berkeley</a> with a degree in
+          <a href="https://engineering.berkeley.edu/academics/undergraduate-programs/electrical-engineering-computer-sciences/">Electrical Engineering &amp; Computer Science</a> in 2024. I currently work in the
+          <a href="https://sohnlab.ucsf.edu/">Sohn Lab</a> at <a href="https://www.ucsf.edu/">UCSF</a>, where I develop
+          machine learning methods to address clinical challenges in radiology,
+          with a focus on imaging-based risk stratification and multimodal data integration.
+          I have a technical interest in vision foundation models and diffusion/GANs.
+        </p>
 
-          <nav class="icon-links" aria-label="Profile links">
-            <a class="icon-link" href="#" aria-label="Email">
-              <i class="fa-regular fa-envelope" aria-hidden="true"></i>
-            </a>
-            <a class="icon-link" href="#" aria-label="GitHub">
-              <i class="fa-brands fa-github" aria-hidden="true"></i>
-            </a>
-            <a class="icon-link" href="https://www.linkedin.com/in/mashabondarenko" aria-label="LinkedIn">
-              <i class="fa-brands fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-            <a class="icon-link" href="https://scholar.google.com/citations?user=0ngVdNYAAAAJ&hl=en" aria-label="Google Scholar">
-              <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-            </a>
-          </nav>
-        </div>
+        <nav class="icon-links" aria-label="Profile links">
+          <a class="icon-link" href="#">Email</a>
+          <a class="icon-link" href="#">GitHub</a>
+          <a class="icon-link" href="https://www.linkedin.com/in/mashabondarenko">LinkedIn</a>
+          <a class="icon-link" href="https://scholar.google.com/citations?user=0ngVdNYAAAAJ&hl=en">Scholar</a>
+        </nav>
       </div>
     </header>
 
     <section>
       <div class="section-header">
         <h2>Research</h2>
-			<div class="filter-buttons" aria-label="Research filters">
-				<button class="filter-btn" data-filter="all" type="button">
-					All <span id="count-all"></span>
-				</button>
-				<button class="filter-btn active" data-filter="manuscript" type="button">
-					Manuscript <span id="count-manuscript"></span>
-				</button>
-				<button class="filter-btn" data-filter="conference" type="button">
-					Conference <span id="count-conference"></span>
-				</button>
-			</div>
+        <div class="filter-buttons" aria-label="Research filters">
+          <button class="filter-btn" data-filter="all" type="button">all <span id="count-all"></span></button>
+          <button class="filter-btn active" data-filter="manuscript" type="button">manuscripts <span id="count-manuscript"></span></button>
+          <button class="filter-btn" data-filter="conference" type="button">conferences <span id="count-conference"></span></button>
+        </div>
       </div>
 
       <div class="entry-list">
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-status status-submission">In Submission</div>
-            <!-- <div class="entry-row-links">
-              <a class="entry-link" href="https://doi.org/10.1007/s10278-025-01824-9" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div> -->
-          </div>
-          <div class="entry-title">Prediction of Subsolid Pulmonary Nodule Evolution from Baseline CT Using Temporal Imaging Models</div>
-          <div class="entry-author"><span class="author-me">Masha Bondarenko</span>, Kang Qi, Ali Nowroozi, Justin Kim, Brian Kunzang, Aaron Lee, Nicole Tran, Shiny Weng, Jonathan Liu, Maya Vella, Gunvant Chaudhari, Tician Schnizler, Arun Innaje, Terrence Chen, Jae Ho Sohn</div>
-        </div>
+        <article class="entry in-submission" data-type="manuscript">
+          <h3 class="entry-title"><span class="entry-title-text">Prediction of Subsolid Pulmonary Nodule Evolution from Baseline CT Using Temporal Imaging Models</span></h3>
+          <p class="entry-author"><span class="author-me">Masha Bondarenko</span>, Kang Qi, Ali Nowroozi, Justin Kim, Brian Kunzang, Aaron Lee, Nicole Tran, Shiny Weng, Jonathan Liu, Maya Vella, Gunvant Chaudhari, Tician Schnizler, Arun Innaje, Terrence Chen, Jae Ho Sohn</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-status status-submission">In Submission</div>
-          </div>
-          <div class="entry-title">Planner-Executor Style Multimodal Agentic System to Answer Patient Questions in Lung Cancer Screening CT</div>
-          <div class="entry-author">Koharu Sakiyama, Adrian Serapio, Meng Ye, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Yufu Wu, Kang Qi, Jonathan Liu, Maya Vella, Yannan Yu, Tician Schnitzler, Alison Rustagi, Jae Ho Sohn</div>
-        </div>
+        <article class="entry in-submission" data-type="manuscript">
+          <h3 class="entry-title"><span class="entry-title-text">Planner-Executor Style Multimodal Agentic System to Answer Patient Questions in Lung Cancer Screening CT</span></h3>
+          <p class="entry-author">Koharu Sakiyama, Adrian Serapio, Meng Ye, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Yufu Wu, Kang Qi, Jonathan Liu, Maya Vella, Yannan Yu, Tician Schnitzler, Alison Rustagi, Jae Ho Sohn</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-status status-submission">In Submission</div>
-            <!-- <div class="entry-row-links">
-              <a class="entry-link" href="" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div> -->
-          </div>
-          <div class="entry-title">Automated Detection of Interstitial Lung Abnormalities on Chest CT: Multi-Center Validation and Clinical Impact Evaluation</div>
-          <div class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Erica Farrand, Jae Ho Sohn</div>
-        </div>
+        <article class="entry in-submission" data-type="manuscript">
+          <h3 class="entry-title"><span class="entry-title-text">Automated Detection of Interstitial Lung Abnormalities on Chest CT: Multi-Center Validation and Clinical Impact Evaluation</span></h3>
+          <p class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Erica Farrand, Jae Ho Sohn</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-status status-submission">In Submission</div>
-            <!-- <div class="entry-row-links">
-              <a class="entry-link" href="" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div> -->
-          </div>
-          <div class="entry-title">Imaging Biomarkers Predicting Progression of Interstitial Lung Abnormalities to Idiopathic Pulmonary Fibrosis: Multicontinental Validation Study</div>
-          <div class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</div>
-        </div>
+        <article class="entry in-submission" data-type="manuscript">
+          <h3 class="entry-title"><span class="entry-title-text">Imaging Biomarkers Predicting Progression of Interstitial Lung Abnormalities to Idiopathic Pulmonary Fibrosis: Multicontinental Validation Study</span></h3>
+          <p class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-status status-submission">In Submission</div>
-          </div>
-          <div class="entry-title">Investigating AI's potential in risk-stratifying lung cancer screenings for future follow-ups: A retrospective analysis of a tertiary hospital cohort</div>
-          <div class="entry-author">Ali Nowroozi, Brian Haas, James Brown, Alison Rustagi, Brian Graham, Mollie Hudson, George Su, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</div>
-        </div>
+        <article class="entry in-submission" data-type="manuscript">
+          <h3 class="entry-title"><span class="entry-title-text">Investigating AI's potential in risk-stratifying lung cancer screenings for future follow-ups: A retrospective analysis of a tertiary hospital cohort</span></h3>
+          <p class="entry-author">Ali Nowroozi, Brian Haas, James Brown, Alison Rustagi, Brian Graham, Mollie Hudson, George Su, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <!-- <div class="entry-status status-accepted">Accepted</div> -->
-            <div class="entry-date">2026</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://doi.org/10.1002/jmri.70336" title="Paper">
-                <i class="fa-regular fa-file-lines"></i> 
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Pre-imaging Predictors of Cardiac MR Image Quality using Large Language Model-Enabled Data Extraction</div>
-          <div class="entry-author">Hong Yu*, <span class="author-me">Masha Bondarenko</span>*, Ali Nowroozi, Yoojin Lee, Adrian Serapio, Pooja Patel, Jae Ho Sohn</div>
-        </div>
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://doi.org/10.1002/jmri.70336">Pre-imaging Predictors of Cardiac MR Image Quality using Large Language Model-Enabled Data Extraction</a></h3>
+          <p class="entry-author">Hong Yu*, <span class="author-me">Masha Bondarenko</span>*, Ali Nowroozi, Yoojin Lee, Adrian Serapio, Pooja Patel, Jae Ho Sohn</p>
+          <p class="entry-venue">Journal of Magnetic Resonance Imaging, 2026</p>
+        </article>
 
-        
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://doi.org/10.1007/s10278-025-01824-9">Large Language Models in Radiologic Numerical Tasks: A Thorough Evaluation and Error Analysis</a></h3>
+          <p class="entry-author">Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Adrian Serapio, Tician Schnitzler, Sukhmanjit S. Brar, Jae Ho Sohn</p>
+          <p class="entry-venue">Journal of Digital Imaging, 2026</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-date">2026</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://doi.org/10.1007/s10278-025-01824-9" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Large Language Models in Radiologic Numerical Tasks: A Thorough Evaluation and Error Analysis</div>
-          <div class="entry-author">Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Adrian Serapio, Tician Schnitzler, Sukhmanjit S. Brar, Jae Ho Sohn</div>
-        </div>
+        <article class="entry" data-type="conference">
+          <h3 class="entry-title"><a class="title-link" href="https://doi.org/10.1007/s10278-025-01679-0">Pre-imaging Predictors of Cardiac MR Image Quality with Large Language Model Based Data Extraction</a></h3>
+          <p class="entry-author">Hong Yu*, <span class="author-me">Masha Bondarenko</span>* (presenter), Ali Nowroozi, Punita Kaveti, Jae Ho Sohn</p>
+          <p class="entry-venue">Conference on Artificial Intelligence in Medical Imaging, 2025</p>
+        </article>
 
-        <div class="entry" data-type="conference">
-          <div class="entry-title-row">
-            <div class="entry-type">Conference Presentation</div>
-            <div class="entry-date">2025</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://doi.org/10.1007/s10278-025-01679-0" title="Abstract">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-              <!-- <a class="entry-link" href="" title="Slides">
-                <i class="fa-solid fa-person-chalkboard"></i>
-              </a> -->
-            </div>
-          </div>
-          <div class="entry-title">Pre-imaging Predictors of Cardiac MR Image Quality with Large Language Model Based Data Extraction</div>
-          <div class="entry-author">Hong Yu*, <span class="author-me">Masha Bondarenko</span>* (presenter), Ali Nowroozi, Punita Kaveti, Jae Ho Sohn</div>
-          <div class="entry-meta">Conference on Artificial Intelligence in Medical Imaging</div>
-        </div>
+        <article class="entry" data-type="conference">
+          <h3 class="entry-title"><span class="entry-title-text">Detection of Interstitial Lung Abnormalities on Chest CT: Comparative Evaluation of Radiomics and Deep Learning Models</span></h3>
+          <p class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span> (presentor), Erica Farrand, Jae Ho Sohn.</p>
+          <p class="entry-venue">Radiological Society of North America Annual Meeting, 2025</p>
+        </article>
 
-        <div class="entry" data-type="conference">
-          <div class="entry-title-row">
-            <div class="entry-type">Conference Presentation</div>
-            <div class="entry-date">2025</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="" title="Slides">
-                <i class="fa-solid fa-person-chalkboard"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Detection of Interstitial Lung Abnormalities on Chest CT: Comparative Evaluation of Radiomics and Deep Learning Models</div>
-          <div class="entry-author">Tician Schnitzler, Ali Nowroozi, <span class="author-me">Masha Bondarenko</span> (presentor), Erica Farrand, Jae Ho Sohn.</div>
-          <div class="entry-meta">Radiological Society of North America Annual Meeting</div>
-        </div>
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://doi.org/10.1186/s12880-025-01794-y">Development and validation of a risk nomogram predicting pneumothorax requiring chest tube placement post-percutaneous CT-guided lung biopsy</a></h3>
+          <p class="entry-author"><span class="author-me">Masha Bondarenko</span>, Jianxiang Zhang, Ulysis Hugo Baal Jr, Brian Lam, Gunvant Chaudhari, Yoo Jin Lee, Jamie Schroeder, Maya Vella, Brian Haas, Thienkhai Vu, Kimberly Kallianos, Jonathan Liu, Shravan Sridhar, Brett Elicker, Jae Ho Sohn</p>
+          <p class="entry-venue">BMC Medical Imaging, 2025</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-date">2025</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://doi.org/10.1186/s12880-025-01794-y" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Development and validation of a risk nomogram predicting pneumothorax requiring chest tube placement post-percutaneous CT-guided lung biopsy</div>
-          <div class="entry-author"><span class="author-me">Masha Bondarenko</span>, Jianxiang Zhang, Ulysis Hugo Baal Jr, Brian Lam, Gunvant Chaudhari, Yoo Jin Lee, Jamie Schroeder, Maya Vella, Brian Haas, Thienkhai Vu, Kimberly Kallianos, Jonathan Liu, Shravan Sridhar, Brett Elicker, Jae Ho Sohn</div>
-        </div>
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://drive.google.com/file/d/1RooGtC0Ve0vwEKlnn9MQ0O9WLS7Q2PU7/view?usp=drive_link">In-Context Learning of Intuitive Physics in Transformers</a></h3>
+          <p class="entry-author">Christian Alamos, <span class="author-me">Masha Bondarenko</span>, Martin Guo, Alex Ngyuen, Max Vogel</p>
+          <p class="entry-venue">Course project, 2023 <span class="venue-links">[<a class="venue-link" href="https://github.com/CAlamosV/proj182">code</a>, <a class="venue-link" href="https://docs.google.com/presentation/d/11A-mH91VwrUwM8K55wBCAJsDd21WDuxM/edit?usp=sharing&ouid=114611496152722420186&rtpof=true&sd=true">slides</a>]</span></p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-date">2023</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://drive.google.com/file/d/1RooGtC0Ve0vwEKlnn9MQ0O9WLS7Q2PU7/view?usp=drive_link" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-              <a class="entry-link" href="https://github.com/CAlamosV/proj182" title="Code">
-                <i class="fa-brands fa-github"></i>
-              </a>
-              <a class="entry-link" href="https://docs.google.com/presentation/d/11A-mH91VwrUwM8K55wBCAJsDd21WDuxM/edit?usp=sharing&ouid=114611496152722420186&rtpof=true&sd=true" title="Slides">
-                <i class="fa-solid fa-person-chalkboard"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">In-Context Learning of Intuitive Physics in Transformers</div>
-          <div class="entry-author">Christian Alamos, <span class="author-me">Masha Bondarenko</span>, Martin Guo, Alex Ngyuen, Max Vogel</div>
-        </div>
+        <article class="entry" data-type="conference">
+          <h3 class="entry-title"><span class="entry-title-text">Clinical and Imaging Factors Associated with Growth of Subsolid Pulmonary Nodule on CT</span></h3>
+          <p class="entry-author"><span class="author-me">Masha Bondarenko</span> (presenter), Shiny Weng, Gunvant Chaudhari, Arun Innaje, Terrence Chen, Jae Ho Sohn</p>
+          <p class="entry-venue">Radiological Society of North America Annual Meeting, 2023</p>
+        </article>
 
-        <div class="entry" data-type="conference">
-          <div class="entry-title-row">
-            <div class="entry-type">Conference Presentation</div>
-            <div class="entry-date">2023</div>
-            <div class="entry-row-links">
-              <!-- <a class="entry-link" href="" title="Slides">
-                <i class="fa-solid fa-person-chalkboard"></i>
-              </a> -->
-            </div>
-          </div>
-          <div class="entry-title">Clinical and Imaging Factors Associated with Growth of Subsolid Pulmonary Nodule on CT</div>
-          <div class="entry-author"><span class="author-me">Masha Bondarenko</span> (presenter), Shiny Weng, Gunvant Chaudhari, Arun Innaje, Terrence Chen, Jae Ho Sohn</div>
-          <div class="entry-meta">Radiological Society of North America Annual Meeting</div>
-        </div>
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://www.medrxiv.org/content/10.1101/2023.12.05.23299456.abstract">Radiomics Analysis for Predicting Growth of Subsolid Lung Nodules on CT</a></h3>
+          <p class="entry-author">Shiny Weng, <span class="author-me">Masha Bondarenko</span>, Gunvant Chaudhari, Arun Innaje, Terrence Chen, Brandon KK Fields, Jae Ho Sohn</p>
+          <p class="entry-venue">medRxiv, 2023</p>
+        </article>
 
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-date">2023</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://www.medrxiv.org/content/10.1101/2023.12.05.23299456.abstract" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Radiomics Analysis for Predicting Growth of Subsolid Lung Nodules on CT</div>
-          <div class="entry-author">Shiny Weng, <span class="author-me">Masha Bondarenko</span>, Gunvant Chaudhari, Arun Innaje, Terrence Chen, Brandon KK Fields, Jae Ho Sohn</div>
-        </div>
-
-        <div class="entry" data-type="manuscript">
-          <div class="entry-title-row">
-            <div class="entry-type">Manuscript</div>
-            <div class="entry-date">2022</div>
-            <div class="entry-row-links">
-              <a class="entry-link" href="https://www.medrxiv.org/content/10.1101/2022.10.31.22281562v1" title="Paper">
-                <i class="fa-regular fa-file-lines"></i>
-              </a>
-              <a class="entry-link" href="https://github.com/bdrad/Emphysema_Quantification" title="Code">
-                <i class="fa-brands fa-github"></i>
-              </a>
-            </div>
-          </div>
-          <div class="entry-title">Emphysema Quantification and Severity Classification with 3-Dimensional Averaging Kernel and Airways Removal</div>
-          <div class="entry-author">Jianxiang Zhang, Gunvant R Chaudhari, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</div>
-        </div>
+        <article class="entry" data-type="manuscript">
+          <h3 class="entry-title"><a class="title-link" href="https://www.medrxiv.org/content/10.1101/2022.10.31.22281562v1">Emphysema Quantification and Severity Classification with 3-Dimensional Averaging Kernel and Airways Removal</a></h3>
+          <p class="entry-author">Jianxiang Zhang, Gunvant R Chaudhari, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</p>
+          <p class="entry-venue">medRxiv, 2022 <span class="venue-links">[<a class="venue-link" href="https://github.com/bdrad/Emphysema_Quantification">code</a>]</span></p>
+        </article>
       </div>
     </section>
 
-    <footer>Masha Bondarenko</footer>
+    <!-- <footer>Masha Bondarenko</footer> -->
   </main>
 
-  <div class="bottom-art" aria-hidden="true">
-    <img src="images/network.svg" alt="" />
-  </div>
-
   <script>
-  const buttons = document.querySelectorAll(".filter-btn");
-  const entries = document.querySelectorAll(".entry");
+    const buttons = document.querySelectorAll(".filter-btn");
+    const entries = document.querySelectorAll(".entry");
+    const shatterButton = document.querySelector(".shatter-toggle");
+    const mainContent = document.querySelector("main.container");
+    let shatterStage = null;
+    let savedScrollY = 0;
+    let hammerArmed = false;
 
-  function updateCounts() {
-    const allCount = entries.length;
-    const manuscriptCount = document.querySelectorAll('.entry[data-type="manuscript"]').length;
-    const conferenceCount = document.querySelectorAll('.entry[data-type="conference"]').length;
+    function updateCounts() {
+      const allCount = entries.length;
+      const manuscriptCount = document.querySelectorAll('.entry[data-type="manuscript"]').length;
+      const conferenceCount = document.querySelectorAll('.entry[data-type="conference"]').length;
 
-    document.getElementById("count-all").textContent = `(${allCount})`;
-    document.getElementById("count-manuscript").textContent = `(${manuscriptCount})`;
-    document.getElementById("count-conference").textContent = `(${conferenceCount})`;
-  }
+      document.getElementById("count-all").textContent = `(${allCount})`;
+      document.getElementById("count-manuscript").textContent = `(${manuscriptCount})`;
+      document.getElementById("count-conference").textContent = `(${conferenceCount})`;
+    }
 
-  function applyFilter(filter) {
-    buttons.forEach(btn => {
-      btn.classList.toggle("active", btn.dataset.filter === filter);
+    function applyFilter(filter) {
+      buttons.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.filter === filter);
+      });
+
+      entries.forEach(entry => {
+        const show = filter === "all" || entry.dataset.type === filter;
+        entry.classList.toggle("hidden", !show);
+      });
+    }
+
+    buttons.forEach(button => {
+      button.addEventListener("click", () => {
+        applyFilter(button.dataset.filter);
+      });
     });
 
-    entries.forEach(entry => {
-      const show = filter === "all" || entry.dataset.type === filter;
-      entry.classList.toggle("hidden", !show);
-    });
-  }
+    function pointOnRectangle(cx, cy, angle, width, height) {
+      const dx = Math.cos(angle);
+      const dy = Math.sin(angle);
+      const tx = dx > 0 ? (width - cx) / dx : dx < 0 ? -cx / dx : Infinity;
+      const ty = dy > 0 ? (height - cy) / dy : dy < 0 ? -cy / dy : Infinity;
+      const t = Math.min(tx, ty);
+      return { x: cx + dx * t, y: cy + dy * t };
+    }
 
-  buttons.forEach(button => {
-    button.addEventListener("click", () => {
-      applyFilter(button.dataset.filter);
-    });
-  });
+    function makeClip(points) {
+      return `polygon(${points.map(p => `${p.x.toFixed(1)}px ${p.y.toFixed(1)}px`).join(", ")})`;
+    }
 
-  updateCounts();
-  applyFilter("manuscript");  
-</script>
+    function createShardPieces(cx, cy) {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const sectors = 28;
+      const rings = [0.05, 0.23, 0.50, 1.08];
+      const startAngle = -Math.PI + 0.13;
+      const pieces = [];
+
+      for (let i = 0; i < sectors; i++) {
+        const jitter0 = Math.sin(i * 1.73) * 0.035;
+        const jitter1 = Math.cos(i * 2.11) * 0.035;
+        const a0 = startAngle + (i / sectors) * Math.PI * 2 + jitter0;
+        const a1 = startAngle + ((i + 1) / sectors) * Math.PI * 2 + jitter1;
+        const mid = (a0 + a1) / 2;
+
+        const edge0 = pointOnRectangle(cx, cy, a0, width, height);
+        const edge1 = pointOnRectangle(cx, cy, a1, width, height);
+
+        for (let r = 0; r < rings.length - 1; r++) {
+          const inner = rings[r];
+          const outer = rings[r + 1];
+          const p0 = { x: cx + (edge0.x - cx) * inner, y: cy + (edge0.y - cy) * inner };
+          const p1 = { x: cx + (edge1.x - cx) * inner, y: cy + (edge1.y - cy) * inner };
+          const p2 = { x: cx + (edge1.x - cx) * outer, y: cy + (edge1.y - cy) * outer };
+          const p3 = { x: cx + (edge0.x - cx) * outer, y: cy + (edge0.y - cy) * outer };
+
+          const distance = 3 + r * 3.2 + (i % 3) * 0.8;
+          const dx = Math.cos(mid) * distance;
+          const dy = Math.sin(mid) * distance;
+          const rot = ((i % 2 ? 1 : -1) * (0.18 + r * 0.10 + (i % 4) * 0.035));
+
+          pieces.push({
+            clip: makeClip([p0, p1, p2, p3]),
+            dx: `${dx.toFixed(1)}px`,
+            dy: `${dy.toFixed(1)}px`,
+            rot: `${rot.toFixed(2)}deg`
+          });
+        }
+      }
+      return pieces;
+    }
+
+    function addImpactLines(stage, cx, cy) {
+      stage.style.setProperty("--impact-left", `${cx}px`);
+      stage.style.setProperty("--impact-top", `${cy}px`);
+
+      const impact = document.createElement("div");
+      impact.className = "impact-mark";
+      stage.appendChild(impact);
+
+      const lengths = [210, 170, 260, 130, 230, 155, 300, 120, 190, 145, 250, 110];
+      const angles = [-128, -96, -64, -31, -8, 22, 49, 82, 116, 151, 194, 235];
+      angles.forEach((angle, index) => {
+        const line = document.createElement("div");
+        line.className = "crack-line";
+        line.style.setProperty("--angle", `${angle}deg`);
+        line.style.setProperty("--length", `${lengths[index]}px`);
+        stage.appendChild(line);
+      });
+    }
+
+    function createShardStage(hitX, hitY) {
+      savedScrollY = window.scrollY;
+      const pieces = createShardPieces(hitX, hitY);
+      shatterStage = document.createElement("div");
+      shatterStage.className = "shatter-stage";
+      shatterStage.setAttribute("aria-hidden", "true");
+      shatterStage.style.setProperty("--hit-x", `${hitX}px`);
+      shatterStage.style.setProperty("--hit-y", `${hitY}px`);
+
+      pieces.forEach(piece => {
+        const shard = document.createElement("div");
+        shard.className = "paper-shard";
+        shard.style.clipPath = piece.clip;
+        shard.style.setProperty("--dx", piece.dx);
+        shard.style.setProperty("--dy", piece.dy);
+        shard.style.setProperty("--rot", piece.rot);
+
+        const clone = mainContent.cloneNode(true);
+        clone.removeAttribute("id");
+        clone.style.transform = `translateY(${-savedScrollY}px)`;
+        clone.style.transformOrigin = "top center";
+        shard.appendChild(clone);
+        shatterStage.appendChild(shard);
+      });
+
+      addImpactLines(shatterStage, hitX, hitY);
+      document.body.appendChild(shatterStage);
+      document.body.classList.remove("hammer-armed");
+      document.body.classList.add("is-shattered", "bandaid-mode");
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${savedScrollY}px`;
+      document.body.style.left = "0";
+      document.body.style.right = "0";
+      document.body.style.width = "100%";
+      hammerArmed = false;
+      shatterButton.classList.remove("is-armed");
+      shatterButton.textContent = "fix";
+      shatterButton.setAttribute("aria-pressed", "true");
+    }
+
+    function restorePage() {
+      if (shatterStage) shatterStage.remove();
+      shatterStage = null;
+      document.body.classList.remove("is-shattered", "hammer-armed", "bandaid-mode");
+      document.body.style.position = "";
+      document.body.style.top = "";
+      document.body.style.left = "";
+      document.body.style.right = "";
+      document.body.style.width = "";
+      window.scrollTo(0, savedScrollY);
+      hammerArmed = false;
+      shatterButton.classList.remove("is-armed");
+      shatterButton.textContent = "hammer";
+      shatterButton.setAttribute("aria-pressed", "false");
+    }
+
+    function armHammer() {
+      hammerArmed = true;
+      document.body.classList.add("hammer-armed");
+      shatterButton.classList.add("is-armed");
+      shatterButton.textContent = "tap page";
+    }
+
+    shatterButton.addEventListener("click", event => {
+      event.stopPropagation();
+      if (document.body.classList.contains("is-shattered")) {
+        restorePage();
+      } else if (hammerArmed) {
+        hammerArmed = false;
+        document.body.classList.remove("hammer-armed");
+        shatterButton.classList.remove("is-armed");
+        shatterButton.textContent = "hammer";
+      } else {
+        armHammer();
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (document.body.classList.contains("is-shattered")) {
+        if (event.target.closest(".shatter-toggle")) return;
+        event.preventDefault();
+        restorePage();
+        return;
+      }
+
+      if (!hammerArmed) return;
+      if (event.target.closest(".shatter-toggle")) return;
+      event.preventDefault();
+      createShardStage(event.clientX, event.clientY);
+    }, true);
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") {
+        if (document.body.classList.contains("is-shattered")) restorePage();
+        else if (hammerArmed) {
+          hammerArmed = false;
+          document.body.classList.remove("hammer-armed");
+          shatterButton.classList.remove("is-armed");
+          shatterButton.textContent = "hammer";
+        }
+      }
+    });
+
+    updateCounts();
+    applyFilter("manuscript");
+  </script>
 </body>
 </html>
