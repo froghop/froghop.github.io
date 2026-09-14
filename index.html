@@ -137,6 +137,10 @@
       color: #7fbfd7;
     }
 
+    #news h2 {
+      color: #7fbfd7;
+    }
+
     #research .section-header {
       gap: 0.75rem;
       align-items: baseline;
@@ -259,6 +263,36 @@
       text-decoration-color: var(--grey-dot);
     }
 
+    #news {
+      margin-top: -0.9rem;
+    }
+
+    .news-list {
+      gap: 0.72rem;
+    }
+
+    .news-item {
+      margin: 0;
+      line-height: 1.42;
+    }
+
+    .news-date {
+      color: #677ca3;
+      font-weight: 750;
+      /* font-style: italic; */
+      margin-right: 0.35rem;
+      white-space: nowrap;
+    }
+
+    .news-keyword {
+      font-weight: 750;
+      text-decoration-line: underline;
+      text-decoration-thickness: 2.5px;
+      text-underline-offset: 0.11em;
+      text-decoration-color: #efb6ca;
+      text-decoration-skip-ink: auto;
+    }
+
     footer {
       margin-top: 2.5rem;
       font-size: 0.86rem;
@@ -334,7 +368,9 @@
 
   <nav class="page-nav" aria-label="Site navigation">
         <a href="#top">Bio</a>
+        <a href="#news">News</a>
         <a href="#research">Research</a>
+        
         <!-- <a href="projects.html">Projects</a> -->
         <!-- <a href="cv.html">CV</a> -->
         <!-- <a href="notes.html">Notes</a> -->
@@ -349,8 +385,12 @@
           I graduated from <a href="https://www.berkeley.edu/">UC Berkeley</a> with a degree in
           <a href="https://engineering.berkeley.edu/academics/undergraduate-programs/electrical-engineering-computer-sciences/">Electrical Engineering &amp; Computer Science</a> in 2024. I currently work as a deep learning researcher in the
           <a href="https://sohnlab.ucsf.edu/">Sohn Lab</a> at <a href="https://www.ucsf.edu/">UCSF</a>, where I 
-          collaborate with doctors and engineers to solve the biggest challenges within radiology diagnostics and workflows.
-          My technical interests have spanned risk modeling (via vision FMs, diffusion/GANs, UNets) and have recently expanded into uncertainty quantification and adversarial analyses within clinical VLMs.
+          collaborate with doctors, engineers, and industry partners to improve diagnostics through imaging and big data.
+          
+
+          My current technical interests revolve around <span class="news-keyword">AI  post-training reliability, uncertainty, and safety</span> within mostly LLMs. I've also worked on foundation models, longitudinal modeling, and risk analyses across multimodal inputs (EHR & CT/XR/MRI).
+          
+          
                   
 
         <!-- <nav class="icon-links" aria-label="Profile links">
@@ -412,6 +452,20 @@
       </div>
     </header>
 
+
+    <section id="news"> 
+      <div class="section-header">
+        <h2>News</h2>
+      </div>
+
+      <div class="entry-list news-list">
+        <p class="news-item">
+          <span class="news-date">August 2026</span>
+          Excited to present our work at COLM in the LLM/VLM Deployment Opportunities and Risks in Healthcare workshop!
+        </p>
+      </div>
+    </section> 
+
     <section id="research">
       <div class="section-header">
         <h2>Research</h2>
@@ -464,7 +518,7 @@
 
         <article class="entry in-submission" data-type="manuscript">
           <h3 class="entry-title"><span class="entry-title-text">Investigating AI's potential in risk-stratifying lung cancer screenings for future follow-ups: A retrospective analysis of a tertiary hospital cohort</span></h3>
-          <p class="entry-author">Ali Nowroozi, Brian Haas, James Brown, Alison Rustagi, Brian Graham, Mollie Hudson, George Su, <span class="author-me">Masha Bondarenko</span>, Jae Ho Sohn</p>
+          <p class="entry-author">Ali Nowroozi, <span class="author-me">Masha Bondarenko</span>, Brian Haas, James Brown, Alison Rustagi, Brian Graham, Mollie Hudson, George Su, Adam Yala, Jae Ho Sohn</p>
         </article>
 
         <article class="entry" data-type="manuscript">
@@ -522,6 +576,8 @@
         </article>
       </div>
     </section>
+
+    
 
   </main>
 
